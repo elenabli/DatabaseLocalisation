@@ -20,6 +20,55 @@ Maven: Maven is used as the build tool for the project.
 
 ### Setup
 To run this project, you need to have Java and Maven installed on your machine. You also need to set up a MySQL database named localization and update the database connection details in the HelloController.java file.
+Script to create the database and table:
+```sql
+CREATE TABLE `employee_en` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `employee_fa` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(50) DEFAULT NULL,
+    `last_name` varchar(50) DEFAULT NULL,
+    `email` varchar(100) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `employee_ja` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(50) DEFAULT NULL,
+    `last_name` varchar(50) DEFAULT NULL,
+    `email` varchar(100) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `employee_field` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name_en` varchar(100) DEFAULT '',
+  `first_name_fa` varchar(100) DEFAULT NULL,
+  `first_name_jp` varchar(100) DEFAULT NULL,
+  `last_name_en` varchar(100) DEFAULT NULL,
+  `last_name_fa` varchar(100) DEFAULT NULL,
+  `last_name_jp` varchar(100) DEFAULT NULL,
+  `email_en` varchar(100) DEFAULT NULL,
+  `email_fa` varchar(100) DEFAULT NULL,
+  `email_jp` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `employee_row` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `lang_id` varchar(50) DEFAULT NULL,
+    `first_name` varchar(100) DEFAULT NULL,
+    `last_name` varchar(100) DEFAULT NULL,
+    `email` varchar(100) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
 
 ### Usage
 Clone the repository.
@@ -31,6 +80,31 @@ Check your MySQL database to see the inserted data.
 
 ### Code Structure
 The main class of the application is HelloController.java. This class handles all the logic for the application, including language selection, database connection, and data insertion. The initialize() method sets up the initial state of the application. The languageBundle() method updates the UI based on the selected language. The languageComboBoxOnAction() method handles the event when a language is selected from the dropdown menu. The saveButtonAction() method handles the event when the "Save" button is clicked. The handleFieldLocalization(), handleRowLocalization(), and handleTableBasedLocalization() methods handle the different localization strategies.  
+
+### Results
+
+UI:
+
+![img.png](img.png) 
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+
+When clicking the "Save" button, the application prompts the user to choose a localization strategy:
+
+![img_3.png](img_3.png)
+
+The data is saved to the database based on the selected localization strategy:
+Field Localization:
+
+![img_4.png](img_4.png)
+
+Row Localization:
+
+![img_5.png](img_5.png)
+
+Table-Based Localization:
+
+![img_6.png](img_6.png)
 
 ### Contributing
 Contributions are welcome. Please open an issue to discuss your ideas or submit a pull request with your changes.
